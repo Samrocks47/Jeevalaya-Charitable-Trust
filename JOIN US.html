@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOIN US</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #0b0b2b;
+        color: #fff;
+      }
+      @media (max-width: 1024px) {
+        body {
+          margin-top: 75px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="headin nav-down">
+      <div class="text-2 cinzel-decorative-bold heading">Jeevalaya</div>
+      <div class="line"></div>
+      <div class="menu-btn" id="menuBtn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#fff"
+        >
+          <path
+            d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+          />
+        </svg>
+      </div>
+      <div class="navbar" id="navLinks">
+        <div class="inter-regular navitem">
+          <a href="Index.html">About us</a>
+        </div>
+        <div class="inter-regular navitem">
+          <a href="Support us.html">To Support</a>
+        </div>
+        <div class="inter-regular navitem">
+          <a href="Successful_stories.html">Successful Story</a>
+        </div>
+        <div class="inter-regular navitem">
+          <a href="#">Join us</a>
+        </div>
+      </div>
+    </div>
+    <span class="backdrop-blur">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <section class="parallax-container">
+      <div class="container inter-regular">
+        <p>
+          It is a joint effort to give life to a needy person. We save them with
+          the support of all philanthropically hands man and money is the
+          contributing factors that stabilize and enable all good deeds. Your
+          esteem involvement as a kind and money would uphold all our stipulated
+          welfare programmes. You also join with us to sponsor any our of
+          possible programmes identification, implementation and mobilization on
+          voluntary basis of you feel as your duty. Please join with us toward
+          referral services rendering inputs for the same purpose. You could
+          also join with us toward sponsorship fund raisers to accomplish ill
+          planned social welfare measures. Volunteer or Intern with Us
+        </p>
+        <p>
+          At The Jeevalaya Charitable Trust, we’re building a team of
+          passionate, skilled individuals committed to creating sustainable
+          impact. We offer a collaborative environment where innovation thrives,
+          and your work directly contributes to positive change all over the
+          world. We offer competitive benefits, flexible work arrangements, and
+          the opportunity to see your work make a real difference. Our team
+          members come from diverse backgrounds but share common values :
+          integrity, respect, innovation, and an unwavering commitment to
+          communities at the margins.
+        </p>
+      </div>
+    </section>
+    <script type="module">
+      import {
+        animate,
+        inView,
+        scroll,
+      } from "https://cdn.jsdelivr.net/npm/motion@10/+esm";
+
+      // =========================
+      // Reveal on Enter
+      // =========================
+
+      const elements = document.querySelectorAll(
+        "img, .content-large, .content-regular, .container, h1, p",
+      );
+
+      elements.forEach((el) => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(80px)";
+
+        inView(el, () => {
+          animate(
+            el,
+            {
+              opacity: [0, 1],
+              y: [80, 0],
+            },
+            {
+              duration: 0.8,
+              easing: "ease-out",
+            },
+          );
+        });
+      });
+
+      // =========================
+      // Parallax Images
+      // =========================
+
+      document.querySelectorAll(".parallax-container img").forEach((img) => {
+        scroll(
+          animate(
+            img,
+            {
+              y: [-80, 80],
+            },
+            {
+              ease: "linear",
+            },
+          ),
+          {
+            target: img,
+          },
+        );
+      });
+
+      // =========================
+      // Section Fade
+      // =========================
+
+      const sections = document.querySelectorAll(".parallax-container");
+
+      sections.forEach((section, index) => {
+        if (index === 0 || index === 3) return; // skip 1st and 4th sections
+
+        scroll(
+          animate(section, {
+            opacity: [0.4, 1, 1, 0.4],
+          }),
+          {
+            target: section,
+            offset: [
+              "start end",
+              "center center",
+              "center center",
+              "end start",
+            ],
+          },
+        );
+      });
+
+      // =========================
+      // Hide Navbar on Scroll Down
+      // =========================
+      function slowScrollTo(id) {
+        const target = document.getElementById(id);
+        const targetPosition = target.offsetTop;
+
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+
+        const duration = 10000; // higher = slower
+        let start = null;
+
+        function animation(currentTime) {
+          if (!start) start = currentTime;
+
+          const timeElapsed = currentTime - start;
+          const progress = Math.min(timeElapsed / duration, 1);
+
+          window.scrollTo(
+            0,
+            startPosition + distance * easeInOutQuad(progress),
+          );
+
+          if (progress < 1) {
+            requestAnimationFrame(animation);
+          }
+        }
+
+        function easeInOutQuad(t) {
+          return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        }
+
+        requestAnimationFrame(animation);
+      }
+      let currentScroll = window.scrollY;
+      let targetScroll = window.scrollY;
+
+      window.addEventListener(
+        "wheel",
+        (e) => {
+          e.preventDefault();
+
+          targetScroll += e.deltaY * 0.4; // lower = slower
+
+          const maxScroll =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+          targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+        },
+        { passive: false },
+      );
+
+      function smoothScroll() {
+        currentScroll += (targetScroll - currentScroll) * 0.06;
+
+        window.scrollTo(0, currentScroll);
+
+        requestAnimationFrame(smoothScroll);
+      }
+
+      smoothScroll();
+
+      const menuBtn = document.getElementById("menuBtn");
+      const navLinks = document.getElementById("navLinks");
+
+      menuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuBtn.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
